@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: install nginx
-      ansible.inbuilt.shell: dnf install nginx -y
+      ansible.builtin.shell: dnf install nginx -y
 
     - name: Start service nginx, if not started
       ansible.builtin.service:
