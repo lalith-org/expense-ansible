@@ -46,6 +46,12 @@
     - name: install mysql
       ansible.builtin.shell: dnf install mysql -y
 
+    - name: Install python packages
+      ansible.builtin.pip:
+        name:
+        - PyMySQL
+        - Cryptography
+
     - name: Load Schema
       community.mysql.mysql_db:
         state: import
