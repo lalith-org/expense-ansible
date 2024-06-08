@@ -1,0 +1,5 @@
+- name: mysql script
+  hosts: all
+  become: yes
+  roles:
+    - mysql

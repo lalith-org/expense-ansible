@@ -1,0 +1,5 @@
+- name: backend script
+  hosts: all
+  become: yes
+  roles:
+    - backend
