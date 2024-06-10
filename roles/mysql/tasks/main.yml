@@ -23,7 +23,7 @@
   community.mysql.mysql_info:
     login_user: root
     login_password: ExpenseApp@1
-    login_host: mysql-dev.rdevops6a.online
+    login_host: mysql-dev.vsldo.online
     filter: version
   register: mysql_connection_output
 
