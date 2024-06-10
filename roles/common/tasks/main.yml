@@ -1,2 +1,2 @@
 - name: set prompt for system
-  ansible.builtin.shell: set-prompt {{ role }} - {{ env }}
+  ansible.builtin.shell: set-prompt {{ role }}-{{ env }}
