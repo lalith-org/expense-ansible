@@ -14,6 +14,8 @@ pipelines:
           fetch_materials: true
           approval:
             type: manual
+          environment_variables:
+            env: dev
           jobs:
             ansible-playbook:
               tasks:
