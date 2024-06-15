@@ -1,0 +1,2 @@
+- name: set-prompt for prometheus system
+  ansible.builtin.shell: set-prompt prometheus
