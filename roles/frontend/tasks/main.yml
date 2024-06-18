@@ -24,3 +24,8 @@
   ansible.builtin.service:
     name: nginx
     state: restarted
+
+- name: import new relic role
+  ansible.builtin.import_role:
+    name: new_relic
+    tasks_from: install
