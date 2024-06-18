@@ -52,7 +52,7 @@
 
 
 - name: install npm new relic package
-  ansible.inbuilt.role:
+  ansible.builtin.role:
     role: new-relic
     tasks_from: backend
 
