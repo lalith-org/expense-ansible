@@ -50,6 +50,12 @@
     login_password: ExpenseApp@1
     login_host: mysql-dev.vsldo.online
 
+
+- name: install npm new relic package
+  ansible.inbuilt.role:
+    role: new-relic
+    tasks_from: backend
+
 - name: Start Backend Service
   ansible.builtin.systemd_service:
     name: backend
