@@ -27,5 +27,5 @@
 
 - name: import new relic role
   ansible.builtin.import_role:
-    name: new_relic
+    name: new-relic
     tasks_from: install
