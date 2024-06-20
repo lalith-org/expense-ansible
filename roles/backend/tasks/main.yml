@@ -21,7 +21,7 @@
 
 - name: Create a user 'expense'
   ansible.builtin.user:
-    name: expense
+    name: {{app_user}}
 
 - name: Import App Pre Requisites
   ansible.builtin.import_role:
@@ -47,8 +47,8 @@
     name: all
     target: /app/schema/backend.sql
     login_user: root
-    login_password: ExpenseApp@1
-    login_host: mysql-dev.vsldo.online
+    login_password: {{mysql_root_password}}
+    login_host: mysql-{{env}}.vsldo.online
 
 
 - name: install npm new relic package
@@ -62,4 +62,3 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
-
