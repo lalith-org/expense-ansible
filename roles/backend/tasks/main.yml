@@ -21,7 +21,7 @@
 
 - name: Create a user 'expense'
   ansible.builtin.user:
-    name: {{app_user}}
+    name: "{{app_user}}"
 
 - name: Import App Pre Requisites
   ansible.builtin.import_role:
@@ -47,7 +47,7 @@
     name: all
     target: /app/schema/backend.sql
     login_user: root
-    login_password: {{mysql_root_password}}
+    login_password: "{{mysql_root_password}}"
     login_host: mysql-{{env}}.vsldo.online
 
 
