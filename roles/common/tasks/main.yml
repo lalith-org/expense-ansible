@@ -10,3 +10,4 @@
   ansible.builtin.import_role:
     name: logstash
     tasks_from: main
+    when: logstash_config_needed
