@@ -1,0 +1,21 @@
+- name: placing the elasticsearch repo file
+  ansible.builtin.template:
+    src: elasticsearch.repo
+    dest: /etc/yum.repo.d/elasticsearch.repo
+
+- name: install logstash
+  ansible.builtin.dnf:
+    name: logstash
+    state: installed
+    enabled: true
+
+- name: copy the logstash conf file to component
+  ansible.builtin.template:
+    src: logstash.conf
+    dest: /etc/logstash/conf.d/logstash.conf
+
+- name: Start Logstash
+  ansible.builtin.systemd_service:
+    name: logstash
+    state: restarted
+    enabled: yes

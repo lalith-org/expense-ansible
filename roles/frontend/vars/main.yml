@@ -1,3 +1,4 @@
 app_dir: /usr/share/nginx/html
 component: frontend
 app_user: nginx
+log_file_path: /var/log/nginx/access.log

@@ -5,3 +5,8 @@
   ansible.builtin.import_role:
     name: prometheus
     tasks_from: node_exporter
+
+- name: Import Logstash and install it
+  ansible.builtin.import_role:
+    name: logstash
+    tasks_from: main
