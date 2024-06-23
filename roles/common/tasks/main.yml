@@ -11,3 +11,8 @@
     name: logstash
     tasks_from: main
   when: logstash_config_needed
+
+- name: Rsyslog Configuration
+  ansible.builtin.import_role:
+    name: rsyslog
+  when: rsyslog_config_needed

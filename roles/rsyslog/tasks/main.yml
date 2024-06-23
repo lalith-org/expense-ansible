@@ -1,0 +1,9 @@
+- name: copy rsyslog file
+  ansible.inbuilt.template:
+    src: rsyslog.conf
+    dest: "{{component}}.conf"
+
+- name: restart rsyslog
+  ansible.inbuilt.systemd:
+    name: rsyslog
+    state: restarted
