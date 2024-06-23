@@ -1,4 +1,5 @@
 app_dir: /app
 component: backend
+rsyslog_config_needed: true
 #logstash_config_needed: false
 log_file_path: /var/log/backend.log
