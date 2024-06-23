@@ -7,7 +7,6 @@
   ansible.builtin.dnf:
     name: logstash
     state: installed
-    enabled: true
 
 - name: copy the logstash conf file to component
   ansible.builtin.template:
