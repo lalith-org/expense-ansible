@@ -1,7 +1,7 @@
 - name: copy rsyslog file
   ansible.builtin.template:
     src: rsyslog.conf
-    dest: "{{component}}.conf"
+    dest: /etc/rsyslog.d/{{component}}.conf
 
 - name: restart rsyslog
   ansible.builtin.systemd:
