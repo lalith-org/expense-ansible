@@ -4,7 +4,7 @@ Description = Backend Service
 [Service]
 User=expense
 WorkingDirectory=/app
-Environment=DB_HOST="mysql-{{ env }}.vsldo.online"
+Environment=DB_HOST="{{ db_name }}"
 Environment=NEW_RELIC_APP_NAME=backend
 Environment=NEW_RELIC_LICENSE_KEY={{ new_relic_key }}
 ExecStart=/bin/node -r newrelic index.js

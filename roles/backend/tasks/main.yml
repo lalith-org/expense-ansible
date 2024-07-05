@@ -46,9 +46,9 @@
     state: import
     name: all
     target: /app/schema/backend.sql
-    login_user: root
-    login_password: "{{mysql_root_password}}"
-    login_host: mysql-{{env}}.vsldo.online
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    login_host: "{{ db_name }}"
 
 
 - name: install npm new relic package

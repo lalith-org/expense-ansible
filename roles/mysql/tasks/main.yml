@@ -23,7 +23,7 @@
   community.mysql.mysql_info:
     login_user: root
     login_password: "{{mysql_root_password}}"
-    login_host: mysql-{{env}}.vsldo.online
+    login_host: "{{ db_name }}"
     filter: version
   register: mysql_connection_output
   ignore_errors: yes
