@@ -119,8 +119,8 @@
 
 - name: Import NewRelic NodeJS Setup
   ansible.builtin.import_role:
-    name: newrelic
-    tasks_from: nodejs
+    name: new-relic
+    tasks_from: backend
 
 - name: Start Backend Service
   ansible.builtin.systemd_service:
