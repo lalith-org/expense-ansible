@@ -70,24 +70,14 @@
   ansible.builtin.shell: dnf module disable nodejs -y
 
 - name: Enable NodeJS module for V20
-  ansible.builtin.shell: dnf module enable nodejs:20 -y
+  ansible.builtin.shell: dnf module disable nodejs -y
 
-- name: Install nodejs
+- name: Install NodeJS
   ansible.builtin.dnf:
     name: nodejs
-    state: latest
+    state: installed
 
-#- name: Copy service file
-#  ansible.builtin.copy:
-#    src: backend.service
-#    dest: /etc/systemd/system/backend.service
-
-- name: Copy service file - template
-  ansible.builtin.template:
-    src: backend.service
-    dest: /etc/systemd/system/backend.service
-
-- name: Create a user 'expense'
+- name: Adding Application User
   ansible.builtin.user:
     name: "{{app_user}}"
 
@@ -96,33 +86,41 @@
     name: common
     tasks_from: app-pre-req
 
-- name: Install packages based on package.json.
+- name: Download NodeJS Dependencies
   community.general.npm:
-    path: /app/
+    path: /app
+    state: latest
 
-- name: install mysql
-  ansible.builtin.shell: dnf install mysql -y
+- name: Copy Backend Service file
+  ansible.builtin.template:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
 
-- name: Install python packages
+- name: Install Python MySQL Client
   ansible.builtin.pip:
     name:
       - PyMySQL
-      - Cryptography
+      - cryptography
+    executable: pip3.9
+
+- name: Install MySQL Client
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
 
 - name: Load Schema
   community.mysql.mysql_db:
     state: import
     name: all
     target: /app/schema/backend.sql
-    login_user: "{{db_user}}"
-    login_password: "{{db_password}}"
-    login_host: "{{db_name}}"
+    login_user: "{{rds_username}}"
+    login_password: "{{rds_password}}"
+    login_host: "{{ rds_endpoint }}"
 
-
-- name: install npm new relic package
+- name: Import NewRelic NodeJS Setup
   ansible.builtin.import_role:
-    role: new-relic
-    tasks_from: backend
+    name: newrelic
+    tasks_from: nodejs
 
 - name: Start Backend Service
   ansible.builtin.systemd_service:
