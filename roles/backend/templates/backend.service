@@ -6,7 +6,7 @@ User={{app_user}}
 WorkingDirectory=/app
 Environment=DB_HOST="{{ rds_endpoint }}"
 Environment=NEW_RELIC_APP_NAME=backend
-Environment=NEW_RELIC_LICENSE_KEY={{NEWRELIC_KEY}}
+Environment=NEW_RELIC_LICENSE_KEY={{new_relic_key}}
 ExecStart=/bin/node -r newrelic /app/index.js
 SyslogIdentifier=backend
 
