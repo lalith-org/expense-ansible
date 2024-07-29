@@ -11,6 +11,7 @@
 
 - name: Un-archive a frontend files
   ansible.builtin.unarchive:
-    src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
+    #src: https://expense-artifacts.s3.amazonaws.com/expense-{{ component }}-v2.zip
+    src: http://{{artifactory_username}}@{{artifactory_password}}:artifactory-internal.vsldo.online:8081/artifactory/expense-{{component}}/{{APP_VERSION}}.zip
     dest: "{{ app_dir }}"
     remote_src: yes
