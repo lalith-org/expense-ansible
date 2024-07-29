@@ -1,71 +1,3 @@
-#- name: Disable default NodeJS Version Module
-#  ansible.builtin.shell: dnf module disable nodejs -y
-#
-#- name: Enable NodeJS module for V20
-#  ansible.builtin.shell: dnf module enable nodejs:20 -y
-#
-#- name: Install nodejs
-#  ansible.builtin.dnf:
-#    name: nodejs
-#    state: latest
-#
-##- name: Copy service file
-##  ansible.builtin.copy:
-##    src: backend.service
-##    dest: /etc/systemd/system/backend.service
-#
-#- name: Copy service file - template
-#  ansible.builtin.template:
-#    src: backend.service
-#    dest: /etc/systemd/system/backend.service
-#
-#- name: Create a user 'expense'
-#  ansible.builtin.user:
-#    name: "{{app_user}}"
-#
-#- name: Import App Pre Requisites
-#  ansible.builtin.import_role:
-#    name: common
-#    tasks_from: app-pre-req
-#
-#- name: Install packages based on package.json.
-#  community.general.npm:
-#    path: /app/
-#
-#- name: install mysql
-#  ansible.builtin.shell: dnf install mysql -y
-#
-#- name: Install python packages
-#  ansible.builtin.pip:
-#    name:
-#    - PyMySQL
-#    - Cryptography
-#
-#- name: Load Schema
-#  community.mysql.mysql_db:
-#    state: import
-#    name: all
-#    target: /app/schema/backend.sql
-#    login_user: "{{db_user}}"
-#    login_password: "{{db_password}}"
-#    login_host: "{{db_name}}"
-#
-#
-#- name: install npm new relic package
-#  ansible.builtin.import_role:
-#    role: new-relic
-#    tasks_from: backend
-#
-#- name: Start Backend Service
-#  ansible.builtin.systemd_service:
-#    name: backend
-#    state: restarted
-#    enabled: yes
-#    daemon_reload: yes
-
-
-# new code here
-
 - name: Disable default NodeJS Version Module
   ansible.builtin.shell: dnf module disable nodejs -y
 
@@ -86,10 +18,10 @@
     name: common
     tasks_from: app-pre-req
 
-- name: Download NodeJS Dependencies
-  community.general.npm:
-    path: /app
-    state: latest
+#- name: Download NodeJS Dependencies
+#  community.general.npm:
+#    path: /app
+#    state: latest
 
 - name: Copy Backend Service file
   ansible.builtin.template:
