@@ -7,6 +7,6 @@ role=$1
 
 ansible-playbook get-secrets.yml -e vault_token=$vault_token -e env=$env -e role=$role
 #ansible-playbook -i $role-$env.vsldo.online, -e env=$env -e role=$role ansible.yml -e '@~/secrets.json' -e '@~/app.json'
-aws ec2 describe-instances --filters Name=tag:Name,Values=$role-$env Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text >inv
-ansible-playbook -i inv -e env=$env -e role=$role ansible.yml -e '@~/secrets.json'
-rm -f ~/*.json
+#aws ec2 describe-instances --filters Name=tag:Name,Values=$role-$env Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text >inv
+#ansible-playbook -i inv -e env=$env -e role=$role ansible.yml -e '@~/secrets.json'
+#rm -f ~/*.json
