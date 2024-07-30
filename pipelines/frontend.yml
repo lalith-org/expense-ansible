@@ -1,7 +1,8 @@
 
 format_version: 10
 pipelines:
-  frontend:
+  expense-frontend:
+    label_template: "${env:APP_VERSION}"
     group: defaultGroup
     materials:
       git-da613e5:
@@ -11,6 +12,8 @@ pipelines:
         branch: main
     secure_variables:
       vault_token: AES:N7/XN5P4XpSAf3Qyr2sf+Q==:GMTsMI47aNszIcvo4j12jjnY5MPySqdEuntHNwb2EMU=
+    environment_variables:
+      APP_VERISON: ""
     stages:
       - DEV:
           fetch_materials: true
