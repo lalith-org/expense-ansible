@@ -13,7 +13,7 @@ pipelines:
     secure_variables:
       vault_token: AES:N7/XN5P4XpSAf3Qyr2sf+Q==:GMTsMI47aNszIcvo4j12jjnY5MPySqdEuntHNwb2EMU=
     environment_variables:
-      APP_VERISON: ""
+      APP_VERSION: ""
     stages:
       - DEV:
           fetch_materials: true
