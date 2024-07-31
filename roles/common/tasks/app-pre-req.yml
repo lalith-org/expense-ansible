@@ -15,5 +15,5 @@
     src: http://{{artifactory_user}}:{{artifactory_password}}@artifactory-internal.vsldo.online:8081/artifactory/expense-{{component}}/{{APP_VERSION}}.zip
     dest: "{{ app_dir }}"
     remote_src: yes
-    owner: "{{app_user}}}"
-    group: "{{app_user}}}"
+#    owner: "{{app_user}}}"
+#    group: "{{app_user}}}"
