@@ -1,2 +1,3 @@
 logstash_config_needed: true
 rsyslog_config_needed: false
+only_deployment: true
