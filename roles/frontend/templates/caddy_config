@@ -7,7 +7,7 @@
     root * /app
     file_server
     handle_path /api/* {
-       reverse-proxy backend-{{env}}.vsldo.online:8080
+       reverse_proxy backend-{{env}}.vsldo.online:8080
     }
     respond /health "OK" 200 {
         close
