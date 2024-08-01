@@ -43,7 +43,7 @@
 - name: copy config file to app location
   ansible.builtin.template:
     src: caddy_config
-    dest: "{{app_dir}}"/Caddyfile
+    dest: {{app_dir}}/Caddyfile
 
 - name: place the caddy service file
   ansible.builtin.template:
