@@ -35,6 +35,10 @@
     dest: /bin/caddy
     mode: '0755'
 
+- name: Add App User
+  ansible.builtin.user:
+    name: "{{app_user}}"
+
 - name: Import App Pre Requisites
   ansible.builtin.import_role:
     name: common
