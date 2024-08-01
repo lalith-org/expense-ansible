@@ -1,0 +1,19 @@
+{
+    servers {
+        metrics
+    }
+}
+:80 {
+    root * /app
+    file_server
+    handle_path /api/* {
+       reverse-proxy backend-{{env}}.vsldo.online:8080
+    }
+    respond /health "OK" 200 {
+        close
+    }
+    log {
+        format json
+        output stdout
+    }
+}

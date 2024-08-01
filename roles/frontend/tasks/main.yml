@@ -1,31 +1,58 @@
-- name: Install Nginx
-  ansible.builtin.dnf:
-    name: nginx
-    state: latest
+#- name: Install Nginx
+#  ansible.builtin.dnf:
+#    name: nginx
+#    state: latest
+#
+#- name: Start service nginx, if not started
+#  ansible.builtin.service:
+#    name: nginx
+#    state: started
+#    enabled: yes
+#
+#- name: Copy conf file - template
+#  ansible.builtin.template:
+#    src: expense.conf
+#    dest: /etc/nginx/default.d/expense.conf
+#
+#- name: Import App Pre Requisites
+#  ansible.builtin.import_role:
+#    name: common
+#    tasks_from: app-pre-req
+#
+#- name: Restart service nginx, in all cases
+#  ansible.builtin.service:
+#    name: nginx
+#    state: restarted
+#
+#- name: import new relic role
+#  ansible.builtin.import_role:
+#    name: new-relic
+#    tasks_from: install
 
-- name: Start service nginx, if not started
-  ansible.builtin.service:
-    name: nginx
-    state: started
-    enabled: yes
-
-- name: Copy conf file - template
-  ansible.builtin.template:
-    src: expense.conf
-    dest: /etc/nginx/default.d/expense.conf
-
+- name: downloading and placing caddy
+  ansible.builtin.get_url:
+    url: https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fdunglas%2Fmercure%2Fcaddy
+    dest: /bin/caddy
+    mode: '0755'
 
 - name: Import App Pre Requisites
   ansible.builtin.import_role:
     name: common
     tasks_from: app-pre-req
 
-- name: Restart service nginx, in all cases
-  ansible.builtin.service:
-    name: nginx
-    state: restarted
+- name: copy config file to app location
+  ansible.builtin.template:
+    src: caddy_config
+    dest: "{{app_dir}}"/Caddyfile
 
-- name: import new relic role
-  ansible.builtin.import_role:
-    name: new-relic
-    tasks_from: install
+- name: place the caddy service file
+  ansible.builtin.template:
+    src: caddy.service
+    dest: /etc/systemd/system/caddy.service
+
+- name: start the caddy service
+  ansible.builtin.service:
+    name: caddy
+    state: restarted
+    enabled: yes
+    daemon-reload: yes
